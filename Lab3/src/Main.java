@@ -1,11 +1,7 @@
 import java.util.ArrayList;
 
 /**
- * 
- */
-
-/**
- * @author glavin
+ * @author Glavin Wiechert
  *
  */
 public class Main {
@@ -15,12 +11,15 @@ public class Main {
 	 */
 	public static void main(String[] args) {
 		
+		// Variables
 		int n = 121;
 		int workers = 8;
 		
+		// Initialize
 		final SieveManager m = new SieveManager(n, workers);
-		//
-		boolean successfullyStarted = m.getPrimes(new Runnable() {
+		// Start!
+		System.out.println("Start!");
+		boolean successfullyStarted = m.calcPrimes(new Runnable() {
 		    public void run() {
 		        // stuff here
 				System.out.println("Results:");
@@ -30,16 +29,11 @@ public class Main {
 					Marker curr = list.get(i); 
 					if (!curr.isMarked())
 					{
-						System.out.print(", "+i);
+						System.out.print(i+", ");
 					}
 				}
 		    }
 		});
-
-		if (successfullyStarted) 
-		{
-			System.out.println("Running");
-		}
+		
 	}
-
 }

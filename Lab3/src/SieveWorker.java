@@ -3,7 +3,7 @@
  */
 
 /**
- * @author glavin
+ * @author Glavin Wiechert
  *
  */
 public class SieveWorker implements Runnable {
