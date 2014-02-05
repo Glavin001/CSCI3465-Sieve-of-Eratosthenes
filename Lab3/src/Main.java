@@ -16,12 +16,11 @@ public class Main {
 	public static void main(String[] args) {
 		
 		int n = 121;
-		int workers = 1;
+		int workers = 8;
 		
-		final SieveManager m = new SieveManager(workers);
-		
+		final SieveManager m = new SieveManager(n, workers);
 		//
-		boolean successfullyStarted = m.getPrimes(n, new Runnable() {
+		boolean successfullyStarted = m.getPrimes(new Runnable() {
 		    public void run() {
 		        // stuff here
 				System.out.println("Results:");

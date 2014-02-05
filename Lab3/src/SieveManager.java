@@ -16,7 +16,7 @@ public class SieveManager
 	private ArrayList<Marker> list;
 	private int numberOfWorkers;
 	private int n;
-	private int p;
+	private Integer p;
 	private Runnable callback;
 	
 	/**
@@ -24,10 +24,11 @@ public class SieveManager
 	 * @param n
 	 * @param 
 	 */
-	public SieveManager(int workers) 
+	public SieveManager(int n, int workers) 
 	{
-		//
+		// Init
 		list = new ArrayList<Marker>();
+		initList(n);
 		numberOfWorkers = workers;
 	}
 	
@@ -44,19 +45,17 @@ public class SieveManager
 	
 	public ArrayList<Marker> getList()
 	{
-		synchronized(list)
-		{
+		//synchronized(list)
+		//{
 			return list;
-		}
+		//}
 	}
 	
-	public boolean getPrimes(int n, Runnable c) 
+	public boolean getPrimes(Runnable c) 
 	{
-		// Init
-		initList(n);
 		// Set Completion Callback
 		callback = c;
-		//
+		// Start at p=2
 		p = 2;
 		// Create Workers
 		for (int i=0; i<numberOfWorkers; i++) {
@@ -68,7 +67,12 @@ public class SieveManager
 	
 	public int getNextPrime() 
 	{
-		synchronized(list) {
+		synchronized(p) {
+			if (p == 0)
+			{
+				return p;
+			}
+			
 			int next = 0;
 			//
 			for (int i=(p+1); i<list.size(); i++) 
@@ -99,8 +103,8 @@ public class SieveManager
 	
 	public boolean markItem(int idx)
 	{
-		System.out.println("mark "+idx);
-		synchronized(list) {
+		//System.out.println("mark "+idx);
+		//synchronized(list) {
 			if (idx < list.size())
 			{
 				Marker m = list.get(idx);
@@ -111,7 +115,7 @@ public class SieveManager
 			{
 				return false;
 			}
-		}
+		//}
 	}
 	
 	private void broadcastCompletition()

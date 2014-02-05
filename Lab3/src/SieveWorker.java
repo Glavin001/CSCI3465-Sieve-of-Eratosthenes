@@ -17,9 +17,13 @@ public class SieveWorker implements Runnable {
 	
 	@Override
 	public void run() {
+		//System.out.println("Starting working");
+		
 		int p = manager.getNextPrime();
+		//System.out.println("First prime: "+p);
 		while (p != 0)
 		{
+			
 			int n = 1;
 			do
 			{
@@ -28,7 +32,11 @@ public class SieveWorker implements Runnable {
 			
 			// Get next
 			p = manager.getNextPrime();
+			//System.out.println("Next prime: "+p);
+			
 		}
+		//System.out.println("Done.");
+		
 	}
 	
 }
